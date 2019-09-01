@@ -26,40 +26,22 @@ namespace AlgorithmsDataStructures2
     {
         public BSTNode Root;
 
-        public int[] BSTArray; // временный массив для ключей дерева
-
         public BalancedBST()
         {
             Root = null;
-
         }
 
-        public void CreateFromArray(int[] a)
+        public void GenerateTree(int[] a)
         {
-            // создаём массив дерева BSTArray из заданного
-            // ...
-            BSTArray = GenerateBBSTArray(a);
-
-            /*
-             * if (a.Length > 0)
-            {
-                BSTArray = new int[a.Length];
-                Root.NodeKey = a[0];
-                ArrayToTree(a, Root, 1);
-            }
-             * 
-             */
-        }
-
-        public void GenerateTree()
-        {
+            int[] BSTArray = GenerateBBSTArray(a);
             // создаём дерево с нуля из массива BSTArray
             // ...
             if (BSTArray.Length > 0)
             {
-                Root = new BSTNode(BSTArray[0], null);
+                Root = new BSTNode(BSTArray[BSTArray.Length / 2], null);
                 Root.Level = 1;
-                ArrayToTree(0, Root);
+                Root.LeftChild = CreateChild(CutArray(BSTArray, false), Root);
+                Root.RightChild = CreateChild(CutArray(BSTArray, true), Root);
             }
         }
 
@@ -80,22 +62,38 @@ namespace AlgorithmsDataStructures2
             if (node.LeftChild == null || node.RightChild == null) depths.Add(node.Level);
         }
         
-        private void ArrayToTree(int i, BSTNode node)
+        private BSTNode CreateChild(int[] a, BSTNode parent)
         {
-            if (node.Parent != null) node.Level = node.Parent.Level + 1;
-            i = i * 2 + 1;
-            if (i < BSTArray.Length)
+            if (a.Length != 0)
             {
-                node.LeftChild = new BSTNode(BSTArray[i], node);
-                ArrayToTree(i, node.LeftChild);
+                BSTNode node = new BSTNode(a[a.Length / 2], parent);
+                node.Level = parent.Level + 1;
+                node.LeftChild = CreateChild(CutArray(a, false), node);
+                node.RightChild = CreateChild(CutArray(a, true), node);
+                return node;
             }
-            i++;
-            if (i < BSTArray.Length)
-            {
-                node.RightChild = new BSTNode(BSTArray[i], node);
-                ArrayToTree(i, node.RightChild);
-            }
+            return null;
         }
+
+        private int[] CutArray(int[] a, bool rightHalf)
+        {
+            int[] b = new int[a.Length / 2];
+            if (rightHalf) Array.Copy(a, a.Length / 2 + 1, b, 0, b.Length);
+            else Array.Copy(a, 0, b, 0, b.Length);
+            return b;
+        }
+        // 7 / 2 - 3    
+        // 
+        // -3 0 5
+        // start: [0] == -3
+        // l == 7 /2 = 3
+        // finished: [2] == 5
+        // 
+        // start: [2] == 5
+        // l == 3 /2 = 1
+        // 
+        //
+        //
 
         public static int[] GenerateBBSTArray(int[] a)
         {
@@ -103,8 +101,13 @@ namespace AlgorithmsDataStructures2
             if (a != null)
             {
                 a = a.OrderBy(i => i).ToArray();
-                int depth = -1;
-                for (int size = a.Length; size != 0; depth++)
+                return a;
+
+                /*
+                 * 
+                 * 
+                 * int depth = -1;
+                   for (int size = a.Length; size != 0; depth++)
                     size >>= 1;
 
                 int[] b = new int[(2 << (depth)) - 1];
@@ -113,6 +116,9 @@ namespace AlgorithmsDataStructures2
                     GetArray(b, a, 0);
                     return b;
                 }
+                 * 
+                 */
+
             }
             return null;
         }
