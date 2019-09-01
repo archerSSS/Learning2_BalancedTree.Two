@@ -94,19 +94,6 @@ namespace AlgorithmsDataStructures2
             return null;
         }
 
-        public static void GetArray(int[] b, int[] a, int nx)
-        {
-            b[nx] = a[a.Length / 2];
-            if (a.Length == 1) return;
-            int[] c = new int[a.Length / 2];
-
-            Array.Copy(a, 0, c, 0, a.Length / 2);
-            GetArray(b, c, nx * 2 + 1);
-
-            Array.Copy(a, a.Length / 2 + 1, c, 0, a.Length / 2);
-            GetArray(b, c, nx * 2 + 2);
-        }
-
         public bool IsKeyValid(BSTNode parent)
         {
             if (parent == null) return true; 
