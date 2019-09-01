@@ -82,18 +82,6 @@ namespace AlgorithmsDataStructures2
             else Array.Copy(a, 0, b, 0, b.Length);
             return b;
         }
-        // 7 / 2 - 3    
-        // 
-        // -3 0 5
-        // start: [0] == -3
-        // l == 7 /2 = 3
-        // finished: [2] == 5
-        // 
-        // start: [2] == 5
-        // l == 3 /2 = 1
-        // 
-        //
-        //
 
         public static int[] GenerateBBSTArray(int[] a)
         {
@@ -102,23 +90,6 @@ namespace AlgorithmsDataStructures2
             {
                 a = a.OrderBy(i => i).ToArray();
                 return a;
-
-                /*
-                 * 
-                 * 
-                 * int depth = -1;
-                   for (int size = a.Length; size != 0; depth++)
-                    size >>= 1;
-
-                int[] b = new int[(2 << (depth)) - 1];
-                if (a.Length == b.Length)
-                {
-                    GetArray(b, a, 0);
-                    return b;
-                }
-                 * 
-                 */
-
             }
             return null;
         }
@@ -136,5 +107,12 @@ namespace AlgorithmsDataStructures2
             GetArray(b, c, nx * 2 + 2);
         }
 
+        public bool IsKeyValid(BSTNode parent)
+        {
+            if (parent == null) return true; 
+            if (parent.LeftChild != null && parent.LeftChild.NodeKey >= parent.NodeKey) return false;
+            if (parent.RightChild != null && parent.RightChild.NodeKey < parent.NodeKey) return false;
+            return IsKeyValid(parent.RightChild) && IsKeyValid(parent.LeftChild);
+        }
     }
 }

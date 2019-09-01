@@ -12,7 +12,7 @@ namespace AlgoTest_1
         //      -3    5   16    91
         //
         [TestMethod]
-        public void TestMethod1()
+        public void Test_TreeGenerates_1()
         {
             BalancedBST bbst = new BalancedBST();
             int[] ar = new int[] { 16, 23, 91, 0, -3, 5, 11 };
@@ -66,6 +66,142 @@ namespace AlgoTest_1
             node_4.RightChild.Level = node_4.Level + 1;
 
             Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+        }
+
+        [TestMethod]
+        public void Test_TreeGenerates_2()
+        {
+            BalancedBST bbst = new BalancedBST();
+            int[] ar = new int[] { 16, 91, -10 };
+            bbst.GenerateTree(ar);
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.LeftChild.LeftChild = new BSTNode(-16, bbst.Root.LeftChild);
+            bbst.Root.LeftChild.LeftChild.Level = bbst.Root.LeftChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+        }
+
+        [TestMethod]
+        public void Test_TreeGenerates_3()
+        {
+            BalancedBST bbst = new BalancedBST();
+            int[] ar = new int[] { 16, 91, -10 };
+            bbst.GenerateTree(ar);
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.LeftChild.RightChild = new BSTNode(-6, bbst.Root.LeftChild);
+            bbst.Root.LeftChild.RightChild.Level = bbst.Root.LeftChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+        }
+
+        [TestMethod]
+        public void Test_TreeGenerates_4()
+        {
+            BalancedBST bbst = new BalancedBST();
+            int[] ar = new int[] { 16, 91, -10 };
+            bbst.GenerateTree(ar);
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.LeftChild = new BSTNode(26, bbst.Root.RightChild);
+            bbst.Root.RightChild.LeftChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+        }
+
+        [TestMethod]
+        public void Test_TreeGenerates_5()
+        {
+            BalancedBST bbst = new BalancedBST();
+            int[] ar = new int[] { 16, 91, -10 };
+            bbst.GenerateTree(ar);
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.RightChild = new BSTNode(126, bbst.Root.RightChild);
+            bbst.Root.RightChild.RightChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+        }
+
+        [TestMethod]
+        public void Test_TreeGenerates_6()
+        {
+            BalancedBST bbst = new BalancedBST();
+            int[] ar = new int[] { 16, 91, -10 };
+            bbst.GenerateTree(ar);
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.LeftChild = new BSTNode(26, bbst.Root.RightChild);
+            bbst.Root.RightChild.LeftChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.RightChild = new BSTNode(126, bbst.Root.RightChild);
+            bbst.Root.RightChild.RightChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+        }
+
+        [TestMethod]
+        public void Test_TreeGenerates_7()
+        {
+            BalancedBST bbst = new BalancedBST();
+            int[] ar = new int[] { 16, 91, -10 };
+            bbst.GenerateTree(ar);
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.LeftChild = new BSTNode(26, bbst.Root.RightChild);
+            bbst.Root.RightChild.LeftChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.RightChild = new BSTNode(126, bbst.Root.RightChild);
+            bbst.Root.RightChild.RightChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.RightChild.LeftChild = new BSTNode(100, bbst.Root.RightChild.RightChild);
+            bbst.Root.RightChild.RightChild.LeftChild.Level = bbst.Root.RightChild.RightChild.Level + 1;
+            Assert.AreEqual(false, bbst.IsBalanced(bbst.Root));
+        }
+
+        [TestMethod]
+        public void Test_TreeGenerates_8()
+        {
+            BalancedBST bbst = new BalancedBST();
+            int[] ar = new int[] { 16, 91, -10 };
+            bbst.GenerateTree(ar);
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.LeftChild = new BSTNode(26, bbst.Root.RightChild);
+            bbst.Root.RightChild.LeftChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.RightChild = new BSTNode(126, bbst.Root.RightChild);
+            bbst.Root.RightChild.RightChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.RightChild.LeftChild = new BSTNode(100, bbst.Root.RightChild.RightChild);
+            bbst.Root.RightChild.RightChild.LeftChild.Level = bbst.Root.RightChild.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root.RightChild.RightChild));
+
+            Assert.AreEqual(true, bbst.IsKeyValid(bbst.Root));
+        }
+
+        [TestMethod]
+        public void Test_TreeGenerates_9()
+        {
+            BalancedBST bbst = new BalancedBST();
+            int[] ar = new int[] { 16, 91, -10 };
+            bbst.GenerateTree(ar);
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.LeftChild = new BSTNode(96, bbst.Root.RightChild);
+            bbst.Root.RightChild.LeftChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.RightChild = new BSTNode(126, bbst.Root.RightChild);
+            bbst.Root.RightChild.RightChild.Level = bbst.Root.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root));
+
+            bbst.Root.RightChild.RightChild.LeftChild = new BSTNode(100, bbst.Root.RightChild.RightChild);
+            bbst.Root.RightChild.RightChild.LeftChild.Level = bbst.Root.RightChild.RightChild.Level + 1;
+            Assert.AreEqual(true, bbst.IsBalanced(bbst.Root.RightChild.RightChild));
+
+            Assert.AreEqual(false, bbst.IsKeyValid(bbst.Root));
         }
     }
 }
